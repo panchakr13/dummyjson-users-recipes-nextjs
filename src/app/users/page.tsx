@@ -1,8 +1,15 @@
 import { getAuthUsers } from '@/lib/auth';
 import { IUser } from '@/models/userModel/IUser';
+import {PaginationComponent} from "@/components/pagination/PaginationComponent";
 
-export default async function UsersPage() {
-    const users = await getAuthUsers();
+interface UsersPageProps {
+    searchParams?: {skip?: string };
+}
+
+    const UsersPage = async ({ searchParams}: UsersPageProps)=> {
+    const searchParamsData = await searchParams;
+    const skip = searchParamsData?.skip ? parseInt(searchParamsData.skip, 10) : 0;
+    const users = await getAuthUsers(skip);
     if (!users) return <p>Спочатку увійдіть в систему.</p>;
 
     return (
@@ -15,6 +22,11 @@ export default async function UsersPage() {
                     </li>
                 ))}
             </ul>
+            <div>
+                <PaginationComponent skip={skip}/>
+            </div>
         </div>
     );
 }
+
+export default UsersPage;

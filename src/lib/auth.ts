@@ -49,11 +49,11 @@ export const getAuthUser = async (): Promise<IUserWithTokens | null> => {
     return user;
 };
 
-export const getAuthUsers = async (): Promise<IUser[] | null> => {
+export const getAuthUsers = async (skip: number): Promise<IUser[] | null> => {
     const user = await getAuthUser();
     if (!user) return null;
 
-    const res = await fetch('https://dummyjson.com/auth/users', {
+    const res = await fetch(`https://dummyjson.com/auth/users?limit=10&skip=${skip}`, {
         headers: { Authorization: `Bearer ${user.accessToken}` },
     });
 
