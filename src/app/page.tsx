@@ -15,7 +15,7 @@ export default async function HomePage() {
                 <>
                     <h3>Welcome!</h3>
                     <span>Please login to access users and recipes!</span>
-                    <Link href={'/auth/login'}>Вхід</Link>
+                    <Link href={'/auth/login'}>Login</Link>
                 </>
             )}
         </div>
