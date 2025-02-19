@@ -9,8 +9,10 @@ interface UserDetailPageProps {
 }
 
 const UserDetailPage = async ({ params }: UserDetailPageProps) => {
-    const user: IUser | null = await getAuthUserById(params.id);
-    const recipes: IRecipe[] | null = await getAuthRecipesByUserId(params.id)
+    const awaitedParams = await params;
+    const id = awaitedParams.id
+    const user: IUser | null = await getAuthUserById(id);
+    const recipes: IRecipe[] | null = await getAuthRecipesByUserId(id)
 
     if (!user) {
         return (

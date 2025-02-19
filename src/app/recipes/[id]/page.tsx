@@ -7,7 +7,8 @@ interface RecipeDetailPageProps {
 }
 
 const RecipeDetailPage = async ({ params }: RecipeDetailPageProps) => {
-    const recipe: IRecipe | null = await getAuthRecipeById(params.id);
+    const awaitedParams = await params;
+    const recipe: IRecipe | null = await getAuthRecipeById(awaitedParams.id);
 
     if (!recipe) {
         return (
@@ -25,6 +26,7 @@ const RecipeDetailPage = async ({ params }: RecipeDetailPageProps) => {
             </header>
             <h1>{recipe.name} {recipe.mealType}</h1>
             <img src={recipe.image} alt={recipe.name} width={150}/>
+            <p><strong>Tags:</strong> {recipe.tags}</p>
             <p><strong>Ingredients:</strong> {recipe.ingredients}</p>
             <p><strong>Instructions:</strong> {recipe.instructions}</p>
             <p>
