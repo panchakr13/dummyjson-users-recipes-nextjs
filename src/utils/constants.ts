@@ -1,0 +1,1 @@
+export const API_URL_AUTH = 'https://dummyjson.com/auth'

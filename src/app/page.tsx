@@ -1,6 +1,6 @@
-import Menu from "@/components/Menu";
-import {getAuthUser} from "@/lib/auth";
+import Menu from "@/components/menu/Menu";
 import Link from "next/link";
+import {getAuthUser} from "@/services/userServices/getAuthUser";
 
 export default async function HomePage() {
     const user = await getAuthUser()
@@ -8,13 +8,13 @@ export default async function HomePage() {
         <div>
             {user ? (
                 <>
-                    <h4>Вітаємо на головній сторінці, ви авторизовані.</h4>
+                    <h4>Welcome to the main page, you are authorized.</h4>
                     <Menu/>
                 </>
             ) : (
                 <>
-                    <h3>Вітаємо!</h3>
-                    <span>Будь ласка, увійдіть, щоб отримати доступ до користувачів та рецептів!</span>
+                    <h3>Welcome!</h3>
+                    <span>Please login to access users and recipes!</span>
                     <Link href={'/auth/login'}>Вхід</Link>
                 </>
             )}

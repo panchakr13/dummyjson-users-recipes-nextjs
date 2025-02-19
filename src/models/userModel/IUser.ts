@@ -1,7 +1,7 @@
 import {Hair} from "@/models/userModel/IUserHair";
-import {Address} from "node:cluster";
 import {Bank} from "@/models/userModel/IUserBank";
 import {Company} from "@/models/userModel/IUserCompany";
+import {Address} from "@/models/userModel/IUserAddress";
 
 export interface IUser {
     id: number;

@@ -1,5 +1,6 @@
-import { getAuthUser } from '@/lib/auth';
+
 import Link from "next/link";
+import {getAuthUser} from "@/services/userServices/getAuthUser";
 
 export default async function Menu() {
     const user = await getAuthUser();
@@ -13,7 +14,7 @@ export default async function Menu() {
                     <img src={user.image} alt={user.username} width="40" height="40" />
                 </>
             ) : (
-                <Link href="/auth/login">Вхід</Link>
+                <Link href="/auth/login">Login</Link>
             )}
         </nav>
     );

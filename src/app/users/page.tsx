@@ -1,29 +1,42 @@
-import { getAuthUsers } from '@/lib/auth';
 import { IUser } from '@/models/userModel/IUser';
 import {PaginationComponent} from "@/components/pagination/PaginationComponent";
+import {getAuthUsers} from "@/services/userServices/getAuthUsers";
+import Link from "next/link";
+import {getAuthUsersSearch} from "@/services/userServices/getAuthUsersSearch";
+import {SearchBar} from "@/components/searchBar/SearchBar";
 
 interface UsersPageProps {
-    searchParams?: {skip?: string };
+    searchParams?: {skip?: string ; q?: string};
 }
 
-    const UsersPage = async ({ searchParams}: UsersPageProps)=> {
+const UsersPage = async ({ searchParams}: UsersPageProps)=> {
     const searchParamsData = await searchParams;
     const skip = searchParamsData?.skip ? parseInt(searchParamsData.skip, 10) : 0;
-    const users = await getAuthUsers(skip);
-    if (!users) return <p>Спочатку увійдіть в систему.</p>;
+    const query = searchParamsData?.q || "";
+    const users = query ? await getAuthUsersSearch(query) : await getAuthUsers(skip);
+
+    if (!users) return (
+        <div>
+            <p>Please, log in</p>
+            <Link href="/auth/login">Login</Link>
+        </div>
+    );
 
     return (
         <div>
-            <h1>Користувачі</h1>
+            <header><Link href="/recipes">Recipes</Link></header>
+            <h1>Users</h1>
+
+            <SearchBar placeholder={'Search users'}/>
             <ul>
                 {users.map((user: IUser) => (
                     <li key={user.id}>
-                        <a href={`/users/${user.id}`}>{user.firstName} {user.lastName}</a>
+                        <Link href={`/users/${user.id}`}>{user.id}. {user.firstName} {user.lastName}</Link>
                     </li>
                 ))}
             </ul>
             <div>
-                <PaginationComponent skip={skip}/>
+                {!query && <PaginationComponent skip={skip}/>}
             </div>
         </div>
     );
