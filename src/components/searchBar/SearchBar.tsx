@@ -32,7 +32,7 @@ export const SearchBar = ({ placeholder }: SearchBarProps) => {
                 placeholder={placeholder}
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="border p-2 rounded-md"
+                className="border p-2 rounded-md text-black"
             />
             <button type="submit" className="ml-2 p-2 bg-blue-500 text-white rounded-md">
                 Search
