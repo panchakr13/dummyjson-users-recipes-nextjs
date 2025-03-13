@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/owu-nextjs-exam-project.iml" filepath="$PROJECT_DIR$/owu-nextjs-exam-project.iml" />
+      <module fileurl="file://$PROJECT_DIR$/dummyjson-users-recipes-nextjs.iml" filepath="$PROJECT_DIR$/dummyjson-users-recipes-nextjs.iml" />
     </modules>
   </component>
 </project>
