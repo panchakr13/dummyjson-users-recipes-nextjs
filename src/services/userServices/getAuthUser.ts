@@ -8,7 +8,6 @@ export const getAuthUser = async (): Promise<IUserWithTokens | null> => {
     let token = cookieStore.get('accessToken')?.value;
 
     if (!token) {
-        console.log('No accessToken, trying refreshToken...');
         token = await refreshAccessToken();
         if (!token) return null;
     }
