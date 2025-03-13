@@ -2,12 +2,11 @@ import { getAuthRecipesByTag } from "@/services/recipeServices/getAuthRecipesByT
 import Link from "next/link";
 
 interface RecipesByTagPageProps {
-    params: { tag: string };
+    params: Promise< { tag: string } >;
 }
 
 const RecipesByTagPage = async ({ params }: RecipesByTagPageProps) => {
-    const awaitedParams = await params;
-    const tag = awaitedParams.tag;
+    const { tag } = await params;
     const recipes = await getAuthRecipesByTag(tag);
 
     if (!recipes) {

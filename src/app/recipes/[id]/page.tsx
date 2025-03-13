@@ -3,12 +3,12 @@ import { IRecipe } from "@/models/recipeModel/IRecipe";
 import { getAuthRecipeById } from "@/services/recipeServices/getAuthRecipeById";
 
 interface RecipeDetailPageProps {
-    params: { id: string };
+    params: Promise<{ id: string }>;
 }
 
 const RecipeDetailPage = async ({ params }: RecipeDetailPageProps) => {
-    const awaitedParams = await params;
-    const recipe: IRecipe | null = await getAuthRecipeById(awaitedParams.id);
+    const { id } = await params;
+    const recipe: IRecipe | null = await getAuthRecipeById(id);
 
     if (!recipe) {
         return (

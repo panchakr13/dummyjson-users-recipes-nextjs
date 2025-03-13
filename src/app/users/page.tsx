@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { SearchBar } from '@/components/searchBar/SearchBar';
 
 interface UsersPageProps {
-    searchParams?: { skip?: string; q?: string };
+    searchParams?: Promise< { skip?: string; q?: string } >;
 }
 
 const UsersPage = async ({ searchParams }: UsersPageProps) => {

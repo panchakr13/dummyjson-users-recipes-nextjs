@@ -5,12 +5,11 @@ import { IRecipe } from '@/models/recipeModel/IRecipe';
 import { getAuthRecipesByUserId } from '@/services/recipeServices/getAuthRecipesByUserId';
 
 interface UserDetailPageProps {
-    params: { id: string };
+    params: Promise< { id: string } >;
 }
 
 const UserDetailPage = async ({ params }: UserDetailPageProps) => {
-    const awaitedParams = await params;
-    const id = awaitedParams.id;
+    const { id } = await params;
     const user: IUser | null = await getAuthUserById(id);
     const recipes: IRecipe[] | null = await getAuthRecipesByUserId(id);
 
