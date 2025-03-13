@@ -3,6 +3,9 @@
 ## Overview
 This project is a Next.js 15 application that aggregates information from [dummyjson.com](https://dummyjson.com/docs) about users and recipes. The application includes authentication, search, pagination, and navigation.
 
+Take the username and password from the DummyJSON API, for example: 
+username: emilys, password: emilyspass
+
 ## Features
 - **Authentication**: Users can log in using dummy credentials from DummyJSON.
 - **Navigation Menu**:
